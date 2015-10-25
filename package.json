@@ -1,0 +1,19 @@
+{
+  "name": "mermaid-filter",
+  "version": "0.0.1",
+  "description": "Pandoc filter for mermaid",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pandoc",
+    "mermaid"
+  ],
+  "author": "Raghu Rajagopalan",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "pandoc-filter": "~0.1.2",
+    "mermaid": "~0.5.5"
+  }
+}
