@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 var pandoc=require('pandoc-filter');
 var _ = require('lodash');
 var tmp = require('tmp');

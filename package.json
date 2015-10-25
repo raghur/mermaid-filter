@@ -12,6 +12,8 @@
   ],
   "author": "Raghu Rajagopalan",
   "license": "BSD-2-Clause",
+  "preferGlobal": true, 
+  "bin": {"mermaid-filter": "index.js"},
   "dependencies": {
     "pandoc-filter": "~0.1.2",
     "mermaid": "~0.5.5",
