@@ -19,18 +19,18 @@ function mermaid(type, value, format, meta) {
     var classes = attrs[1]
     if (_.contains('mermaid', classes)) {
         counter++;
-        console.log(content);
+        //console.log(content);
         tmp.file(function(err, tmpfile, fd, cleanup) {
            if(err) throw err;
-           console.log(tmpfile);
+           //console.log(tmpfile);
            fs.writeFile(tmpfile, content, function(err) {
                if(err) throw err;
                exec(cmd + " " + tmpfile, function(err, stdin, stdout) {
                 if (err) throw err;
-                console.log(stdout);
+                //console.log(stdout);
                 var oldPath = path.join(outdir, path.basename(tmpfile) + ".png"); 
                 var newPath = path.join(outdir, prefix + counter + ".png");
-                console.log(oldPath, newPath);
+                //console.log(oldPath, newPath);
                 fs.renameSync(oldPath, newPath);
                });
            });
