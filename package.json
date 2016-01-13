@@ -15,7 +15,7 @@
   "preferGlobal": true, 
   "bin": {"mermaid-filter": "index.js"},
   "dependencies": {
-    "pandoc-filter": "~0.1.2",
+    "pandoc-filter": "raghur/pandoc-filter-node#image-args",
     "mermaid": "~0.5.5",
     "lodash": "~3.10.1",
     "tmp": "0.0.28"

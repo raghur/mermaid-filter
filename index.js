@@ -21,7 +21,7 @@ function mermaid(type, value, format, meta) {
         if (item.length  === 1) options[item[0]] = true;
         else options[item[0]] = item[1];
     });
-    console.log(options);
+    //console.log(options);
     if (!_.contains('mermaid', classes)) return null;
     counter++;
     //console.log(content);
@@ -32,7 +32,14 @@ function mermaid(type, value, format, meta) {
     var newPath = path.join(outdir, prefix + counter + "." + options.format);
     exec(cmd + " -w " + options.width + " " + (options.format==='png' ? "-p": "-s") + " " + tmpfileObj.name);
     fs.renameSync(oldPath, newPath);
-    return pandoc.Para([pandoc.Image([],[newPath, ""])]);
+    return pandoc.Para(
+                [
+                    pandoc.Image(
+                        ['', [], []],
+                        [],
+                        [newPath, ""]
+                    )
+                ]);
 }
 
 pandoc.toJSONFilter(mermaid);
