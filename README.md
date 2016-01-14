@@ -26,6 +26,8 @@ Installation and usage
 
 `pandoc -t html -F mermaid-filter -o something.html something.md`
 
+**WINDOWS** - you probably need `mermaid-filter.cmd` in the line above
+
 Options
 --------------------
 
