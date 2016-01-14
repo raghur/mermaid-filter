@@ -12,12 +12,14 @@
   ],
   "author": "Raghu Rajagopalan",
   "license": "BSD-2-Clause",
-  "preferGlobal": true, 
-  "bin": {"mermaid-filter": "index.js"},
+  "preferGlobal": true,
+  "bin": {
+    "mermaid-filter": "index.js"
+  },
   "dependencies": {
-    "pandoc-filter": "raghur/pandoc-filter-node#image-args",
-    "mermaid": "~0.5.5",
     "lodash": "~3.10.1",
+    "mermaid": "~0.5.5",
+    "pandoc-filter": "^0.1.3",
     "tmp": "0.0.28"
   }
 }
