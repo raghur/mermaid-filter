@@ -10,6 +10,7 @@ var prefix="diagram";
 var outdir= "img";
 var mermaid_opts = "-v -o " + outdir;
 var cmd = "mermaid " + mermaid_opts;
+var imgur=  __dirname + "/node_modules/.bin/imgur";
 var counter = 0;
 function mermaid(type, value, format, meta) {
     if (type != "CodeBlock") return null;
@@ -36,14 +37,20 @@ function mermaid(type, value, format, meta) {
     exec(`${cmd} -w ${options.width} ${options.format==='png' ? "-p": "-s"}  ${tmpfileObj.name}`);
     //console.log(oldPath, newPath);
     fs.renameSync(oldPath, newPath);
+    newPath = exec(`${imgur} ${newPath}`).toString().trim();
+    // console.log(newPath);
+    // imgur.uploadFile(newPath)
+    // .then(function(json) {
+    //     // console.log(json.data.link);
+    // });
     return pandoc.Para(
-                [
-                    pandoc.Image(
-                        ['', [], []],
-                        [],
-                        [newPath, ""]
-                    )
-                ]);
+        [
+            pandoc.Image(
+                ['', [], []],
+                [],
+                [newPath, ""]
+            )
+    ]);
 }
 
 pandoc.toJSONFilter(mermaid);
