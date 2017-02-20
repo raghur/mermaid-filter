@@ -38,11 +38,6 @@ function mermaid(type, value, format, meta) {
     //console.log(oldPath, newPath);
     fs.renameSync(oldPath, newPath);
     newPath = exec(`${imgur} ${newPath}`).toString().trim();
-    // console.log(newPath);
-    // imgur.uploadFile(newPath)
-    // .then(function(json) {
-    //     // console.log(json.data.link);
-    // });
     return pandoc.Para(
         [
             pandoc.Image(
