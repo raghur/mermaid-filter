@@ -7,7 +7,7 @@ var path = require('path');
 var exec = require('child_process').execSync;
 
 var prefix="diagram";
-var cmd = "mermaid -v ";
+var cmd = __dirname + "/node_modules/.bin/mermaid -v -e " + __dirname + "/node_modules/.bin/phantomjs.cmd";
 var imgur=  __dirname + "/node_modules/.bin/imgur";
 var counter = 0;
 function mermaid(type, value, format, meta) {

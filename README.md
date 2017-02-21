@@ -18,8 +18,6 @@ and get this in rendered doc ![rendered](https://cdn.rawgit.com/raghur/mermaid-f
 Installation and usage
 ---------------------
 
-1. `npm install --global mermaid`
-2. `npm install --global phantomjs`
 3. `npm install --global raghur/mermaid-filter`
 
 `pandoc -t html -F mermaid-filter -o something.html something.md`

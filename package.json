@@ -10,6 +10,7 @@
     "pandoc",
     "mermaid"
   ],
+  "repository": "https://github.com/raghur/mermaid-filter",
   "author": "Raghu Rajagopalan",
   "license": "BSD-2-Clause",
   "preferGlobal": true,
@@ -19,8 +20,9 @@
   "dependencies": {
     "imgur": "^0.2.0",
     "lodash": "~3.10.1",
-    "mermaid": "~0.5.5",
+    "mermaid": "^7.0.0",
     "pandoc-filter": "^0.1.3",
+    "phantomjs": "^2.1.7",
     "tmp": "0.0.28"
   }
 }
