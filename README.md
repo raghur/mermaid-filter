@@ -5,13 +5,13 @@ Sequence and Graph diagrams in your markdown files!
 
 Write your diagrams in fenced code blocks as usual like this:
 
-```
-\```mermaid
+```markdown
+~~~mermaid
 
 sequenceDiagram
     Alice->>John: Hello John, how are you?
     John-->>Alice: Great!
-
+~~~
 
 ```
 
@@ -26,7 +26,12 @@ Installation and usage
 
 `pandoc -t html -F mermaid-filter -o something.html something.md`
 
-**WINDOWS** - you probably need `mermaid-filter.cmd` in the line above
+**WINDOWS** - you need `mermaid-filter.cmd` in the line above
+
+**Windows 8.1** - On windows 8.1, `mermaid-filter.cmd` fails - apparently due to change in how the CMD.exe works
+for subprocesses? - see this [issue thread](https://github.com/jgm/pandoc/issues/3458).
+You have to edit the globally installed `mermaid-filter.cmd` located in `c:\users\<username>\AppData\Roaming\npm`
+to use `~dp$PATH:0`.
 
 Options
 --------------------
@@ -36,4 +41,5 @@ You have a couple of formatting options via attributes of the fenced code block 
 - Image Format - Use \`\`\`{.mermaid format=svg}     Default is png
 - Width  - Use \`\`\`{.mermaid width=400}     default with is 500
 
-Note that to specify options, you need to use the curly braces syntax and have the `.mermaid` class attached. Admittedly, this is uglier than the earlier syntax on top - but that's how Pandoc wants it.
+Note that to specify options, you need to use the curly braces syntax and have the `.mermaid` class attached.
+Admittedly, this is uglier than the earlier syntax on top - but that's how Pandoc wants it.

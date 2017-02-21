@@ -17,7 +17,7 @@ function mermaid(type, value, format, meta) {
     var attrs = value[0],
         content = value[1];
     var classes = attrs[1];
-    var options = {width: '500', format: 'png'};
+    var options = {width: '500', format: 'png', imgur: false};
     if (classes.indexOf('mermaid') < 0) return null;
 
     counter++;
@@ -36,8 +36,11 @@ function mermaid(type, value, format, meta) {
     var newPath = path.join(outdir, `${prefix}-${counter}.${options.format}`);
     exec(`${cmd} -w ${options.width} ${options.format==='png' ? "-p": "-s"}  ${tmpfileObj.name}`);
     //console.log(oldPath, newPath);
-    fs.renameSync(oldPath, newPath);
-    newPath = exec(`${imgur} ${newPath}`).toString().trim();
+    if (options.imgur)
+        newPath = exec(`${imgur} ${newPath}`).toString().trim();
+    else
+        fs.renameSync(oldPath, newPath);
+
     return pandoc.Para(
         [
             pandoc.Image(
