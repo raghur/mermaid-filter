@@ -5,13 +5,13 @@ Sequence and Graph diagrams in your markdown files!
 
 Write your diagrams in fenced code blocks as usual like this:
 
-```markdown
-\~\~\~mermaid
+```````markdown
+~~~mermaid
 sequenceDiagram
     Alice->>John: Hello John, how are you?
     John-->>Alice: Great!
-\~\~\~
-```
+~~~
+```````
 
 and get this in rendered doc ![rendered](https://cdn.rawgit.com/raghur/mermaid-filter/master/img/diagram-1.svg)
 
