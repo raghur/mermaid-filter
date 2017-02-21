@@ -40,6 +40,7 @@ You have a couple of formatting options via attributes of the fenced code block 
 
 - Image Format - Use \`\`\`{.mermaid format=svg}     Default is png
 - Width  - Use \`\`\`{.mermaid width=400}     default with is 500
+- Save path - Use \`\`\`{.mermaid loc="img"}  default = imgur which will upload to imgur. Otherwise treated as foldername
 
 Note that to specify options, you need to use the curly braces syntax and have the `.mermaid` class attached.
 Admittedly, this is uglier than the earlier syntax on top - but that's how Pandoc wants it.
