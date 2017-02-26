@@ -15,7 +15,7 @@ function mermaid(type, value, format, meta) {
     var attrs = value[0],
         content = value[1];
     var classes = attrs[1];
-    var options = {width: '500', format: 'png', loc: 'imgur'};
+    var options = {width: '500', format: 'png', loc: 'inline'};
 
     if (classes.indexOf('mermaid') < 0) return null;
 
@@ -26,6 +26,7 @@ function mermaid(type, value, format, meta) {
         else options[item[0]] = item[1];
     });
     // console.log(options);
+    // if (options.loc === 'inline') options.format = 'svg'
     if (!_.contains('mermaid', classes)) return null;
     counter++;
     //console.log(content);
@@ -47,6 +48,20 @@ function mermaid(type, value, format, meta) {
                 .replace("http://", "https://");
     else {
         fs.renameSync(savePath, newPath);
+    }
+
+    if (options.loc == 'inline') {
+
+        if (options.format === 'svg') {
+            var data = fs.readFileSync(newPath, 'utf8')
+            data = data.replace (/"/g, "'");
+            // console.log(data);
+            newPath = "data:image/svg+xml," + encodeURIComponent(data);
+        } else  {
+            var data = fs.readFileSync(newPath)
+            newPath = 'data:image/png;base64,' + new Buffer(data).toString('base64');
+
+        }
     }
 
     return pandoc.Para(

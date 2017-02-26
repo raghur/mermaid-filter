@@ -37,8 +37,14 @@ You have a couple of formatting options via attributes of the fenced code block 
 
 - Image Format - Use \`\`\`{.mermaid format=svg}     Default is png
 - Width  - Use \`\`\`{.mermaid width=400}     default with is 500
-- Save path - Use \`\`\`{.mermaid loc=img}  default loc=imgur which will upload to imgur. Otherwise treated as foldername
- - in the case above, a folder called `img` will be created with the file.
+- Save path - Use \`\`\`{.mermaid loc=img}  default loc=inline which will
+  encode the image in a `data uri` scheme.
+    - Possible values for `loc`
+        - `loc=inline` - default; encode image to data uri on img tag.
+            - For widest compatibility, use png (default)
+            - SVG has trouble on IE11
+        - `loc=imgur` - upload png to imgur and link to it.
+        - `loc=<anythingelse>` -treat as folder name to place images into
 
 Note that to specify options, you need to use the curly braces syntax and have the `.mermaid` class attached.
 Admittedly, this is uglier than the earlier syntax on top - but that's how Pandoc wants it.
