@@ -8,8 +8,8 @@ var exec = require('child_process').execSync;
 var phantomjs = require("phantomjs-prebuilt")
 
 var prefix="diagram";
-var cmd = __dirname + "/node_modules/.bin/mermaid -v -e " + phantomjs.path;
-var imgur=  __dirname + "/node_modules/.bin/imgur";
+var cmd = externalTool("mermaid") + " -v -e " + phantomjs.path;
+var imgur = externalTool("imgur");
 var counter = 0;
 function mermaid(type, value, format, meta) {
     if (type != "CodeBlock") return null;
@@ -73,6 +73,23 @@ function mermaid(type, value, format, meta) {
                 [newPath, ""]
             )
     ]);
+}
+
+function externalTool(command) {
+    return firstExisting([
+        path.resolve(__dirname, "node_modules", ".bin", command),
+        path.resolve(__dirname, "..", ".bin", command)],
+        function() {
+            console.error("External tool not found: " + command);
+            process.exit(1);
+        });
+}
+
+function firstExisting(paths, error) {
+    for (var i = 0; i < paths.length; i++) {
+        if (fs.existsSync(paths[i])) return paths[i];
+    }
+    error();
 }
 
 pandoc.toJSONFilter(mermaid);
