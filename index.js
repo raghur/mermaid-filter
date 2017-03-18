@@ -5,9 +5,10 @@ var tmp = require('tmp');
 var fs = require('fs');
 var path = require('path');
 var exec = require('child_process').execSync;
+var phantomjs = require("phantomjs-prebuilt")
 
 var prefix="diagram";
-var cmd = __dirname + "/node_modules/.bin/mermaid -v -e " + __dirname + "/node_modules/.bin/phantomjs.cmd";
+var cmd = __dirname + "/node_modules/.bin/mermaid -v -e " + phantomjs.path;
 var imgur=  __dirname + "/node_modules/.bin/imgur";
 var counter = 0;
 function mermaid(type, value, format, meta) {
