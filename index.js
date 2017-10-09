@@ -5,10 +5,9 @@ var tmp = require('tmp');
 var fs = require('fs');
 var path = require('path');
 var exec = require('child_process').execSync;
-var phantomjs = require("phantomjs-prebuilt")
 
 var prefix="diagram";
-var cmd = externalTool("mermaid") + " -v -e " + phantomjs.path;
+var cmd = externalTool("mmdc");
 var imgur = externalTool("imgur");
 var counter = 0;
 function mermaid(type, value, format, meta) {
@@ -20,7 +19,6 @@ function mermaid(type, value, format, meta) {
 
     if (classes.indexOf('mermaid') < 0) return null;
 
-    counter++;
     // console.log(attrs, content);
     attrs[2].map(item => {
         if (item.length  === 1) options[item[0]] = true;
@@ -36,34 +34,33 @@ function mermaid(type, value, format, meta) {
     fs.writeFileSync(tmpfileObj.name, content);
     var outdir = options.loc !== 'imgur' ? options.loc : path.dirname(tmpfileObj.name);
     // console.log(outdir);
-    var savePath = path.join(outdir, path.basename(tmpfileObj.name) + "." + options.format);
+    var savePath = tmpfileObj.name + "." + options.format
     var newPath = path.join(outdir, `${prefix}-${counter}.${options.format}`);
-    var fullCmd = `${cmd} -o ${outdir} -w ${options.width} ${options.format==='png' ? "-p": "-s"}  ${tmpfileObj.name}`
+    var fullCmd = `${cmd}  -w ${options.width} -i ${tmpfileObj.name} -o ${savePath}`
     // console.log(fullCmd, savePath)
     exec(fullCmd);
     //console.log(oldPath, newPath);
-    if (options.loc === 'imgur')
-        newPath = exec(`${imgur} ${savePath}`)
-                .toString()
-                .trim()
-                .replace("http://", "https://");
-    else {
-        fs.renameSync(savePath, newPath);
-    }
-
     if (options.loc == 'inline') {
 
         if (options.format === 'svg') {
-            var data = fs.readFileSync(newPath, 'utf8')
+            var data = fs.readFileSync(savePath, 'utf8')
             data = data.replace (/"/g, "'");
             // console.log(data);
             newPath = "data:image/svg+xml," + encodeURIComponent(data);
         } else  {
-            var data = fs.readFileSync(newPath)
+            var data = fs.readFileSync(savePath)
             newPath = 'data:image/png;base64,' + new Buffer(data).toString('base64');
 
         }
+    } else if (options.loc === 'imgur')
+        newPath = exec(`${imgur} ${savePath}`)
+            .toString()
+            .trim()
+            .replace("http://", "https://");
+    else {
+        mv(savePath, newPath);
     }
+
 
     return pandoc.Para(
         [
@@ -83,6 +80,14 @@ function externalTool(command) {
             console.error("External tool not found: " + command);
             process.exit(1);
         });
+}
+function mv(from, to) {
+    var readStream = fs.createReadStream(from)
+    var writeStream = fs.createWriteStream(to);
+
+    readStream.pipe(writeStream);
+
+    fs.unlinkSync(from);
 }
 
 function firstExisting(paths, error) {
