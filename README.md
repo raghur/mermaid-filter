@@ -5,22 +5,23 @@ Sequence and Graph diagrams in your markdown files!
 
 Write your diagrams in fenced code blocks as usual like this:
 
-```````markdown
-\~~~mermaid
-sequenceDiagram
-    Alice->>John: Hello John, how are you?
-    John-->>Alice: Great!
-\~~~
-```````
+    ~~~mermaid
+    sequenceDiagram
+        Alice->>John: Hello John, how are you?
+        John-->>Alice: Great!
+    ~~~
 
-and get this in rendered doc ![rendered](https://cdn.rawgit.com/raghur/mermaid-filter/master/img/diagram-1.svg)
+
+and get this in rendered doc <img
+src="https://cdn.rawgit.com/raghur/mermaid-filter/master/img/diagram-1.svg"
+width="100%"/>
 
 Installation and usage
 ---------------------
 
-3. `npm install --global raghur/mermaid-filter`
+1. `npm install --global mermaid-filter`
+2. To convert your markdown file `something.md` into `something.html`, use `pandoc -t html -F mermaid-filter -o something.html something.md`
 
-`pandoc -t html -F mermaid-filter -o something.html something.md`
 
 **WINDOWS** - you need `mermaid-filter.cmd` in the line above
 
@@ -35,9 +36,9 @@ Options
 
 You have a couple of formatting options via attributes of the fenced code block to control the rendering
 
-- Image Format - Use \`\`\`{.mermaid format=svg}     Default is png
-- Width  - Use \`\`\`{.mermaid width=400}     default with is 500
-- Save path - Use \`\`\`{.mermaid loc=img}  default loc=inline which will
+- Image Format - Use `{.mermaid format=svg}`     Default is png
+- Width  - Use `{.mermaid width=400}`     default with is 500
+- Save path - Use `{.mermaid loc=img}`  default loc=inline which will
   encode the image in a `data uri` scheme.
     - Possible values for `loc`
         - `loc=inline` - default; encode image to data uri on img tag.
