@@ -5,17 +5,29 @@ var tmp = require('tmp');
 var fs = require('fs');
 var path = require('path');
 var exec = require('child_process').execSync;
+var process = require('process')
 
 var prefix="diagram";
 var cmd = externalTool("mmdc");
 var imgur = externalTool("imgur");
 var counter = 0;
+var folder = process.cwd()
+// console.log(folder)
 function mermaid(type, value, format, meta) {
     if (type != "CodeBlock") return null;
     var attrs = value[0],
         content = value[1];
     var classes = attrs[1];
     var options = {width: '500', format: 'png', loc: 'inline'};
+    var configFile = path.join(folder, ".mermaid-config.json")
+    var confFileOpts = ""
+    if (fs.existsSync(configFile)) {
+        confFileOpts += " -c " + configFile
+    }
+    var cssFile = path.join(folder, ".mermaid.css")
+    if (fs.existsSync(cssFile)) {
+        confFileOpts += " -C " + cssFile
+    }
 
     if (classes.indexOf('mermaid') < 0) return null;
 
@@ -36,7 +48,7 @@ function mermaid(type, value, format, meta) {
     // console.log(outdir);
     var savePath = tmpfileObj.name + "." + options.format
     var newPath = path.join(outdir, `${prefix}-${counter}.${options.format}`);
-    var fullCmd = `${cmd}  -w ${options.width} -i ${tmpfileObj.name} -o ${savePath}`
+    var fullCmd = `${cmd}  ${confFileOpts} -w ${options.width} -i ${tmpfileObj.name} -o ${savePath}` 
     // console.log(fullCmd, savePath)
     exec(fullCmd);
     //console.log(oldPath, newPath);
