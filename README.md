@@ -38,6 +38,7 @@ You have a couple of formatting options via attributes of the fenced code block 
 
 - Image Format - Use `{.mermaid format=svg}`     Default is png
 - Width  - Use `{.mermaid width=400}`     default with is 500
+- Theme - Use `{.mermaid theme=forest}` default is 'default'. Corresponds to `--theme`  flag of mermaid.cli
 - Save path - Use `{.mermaid loc=img}`  default loc=inline which will
   encode the image in a `data uri` scheme.
     - Possible values for `loc`
@@ -49,3 +50,10 @@ You have a couple of formatting options via attributes of the fenced code block 
 
 Note that to specify options, you need to use the curly braces syntax and have the `.mermaid` class attached.
 Admittedly, this is uglier than the earlier syntax on top - but that's how Pandoc wants it.
+
+JSON and CSS configuration
+---------------------------
+
+Mermaid cli allows you to specify additional options in a json configuration file and a css file. `mermaid-filter`
+will look in the current directory for `.mermaid-config.json` and `.mermaid.css` and if found, pass them in to 
+mermaid cli.

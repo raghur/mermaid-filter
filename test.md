@@ -19,3 +19,13 @@ sequenceDiagram
     Alice->>John: Hello John, how are you?
     John-->>Alice: Great!
 ```
+
+With theme specified
+---------------------
+
+```{.mermaid width=100 format=svg theme=forest}
+sequenceDiagram
+    Alice->>John: Hello John, how are you?
+    John-->>Alice: Great!
+```
+

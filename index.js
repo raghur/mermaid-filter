@@ -18,7 +18,7 @@ function mermaid(type, value, format, meta) {
     var attrs = value[0],
         content = value[1];
     var classes = attrs[1];
-    var options = {width: '500', format: 'png', loc: 'inline'};
+    var options = {width: '500', format: 'png', loc: 'inline', theme: "default"};
     var configFile = path.join(folder, ".mermaid-config.json")
     var confFileOpts = ""
     if (fs.existsSync(configFile)) {
@@ -48,7 +48,7 @@ function mermaid(type, value, format, meta) {
     // console.log(outdir);
     var savePath = tmpfileObj.name + "." + options.format
     var newPath = path.join(outdir, `${prefix}-${counter}.${options.format}`);
-    var fullCmd = `${cmd}  ${confFileOpts} -w ${options.width} -i ${tmpfileObj.name} -o ${savePath}` 
+    var fullCmd = `${cmd}  ${confFileOpts} -w ${options.width} -i ${tmpfileObj.name} -t ${options.theme} -o ${savePath}` 
     // console.log(fullCmd, savePath)
     exec(fullCmd);
     //console.log(oldPath, newPath);
