@@ -2,3 +2,5 @@ node_modules/
 img/
 test.html
 test.json
+.vscode/
+.mermaid*
