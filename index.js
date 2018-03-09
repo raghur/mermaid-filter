@@ -18,8 +18,9 @@ function mermaid(type, value, format, meta) {
     var attrs = value[0],
         content = value[1];
     var classes = attrs[1];
-    var options = {width: '500', format: 'png', loc: 'inline', theme: "default"};
+    var options = {width: '500', format: 'png', loc: 'inline', theme: "default", caption: ""};
     var configFile = path.join(folder, ".mermaid-config.json")
+    
     var confFileOpts = ""
     if (fs.existsSync(configFile)) {
         confFileOpts += " -c " + configFile
@@ -73,13 +74,17 @@ function mermaid(type, value, format, meta) {
         mv(savePath, newPath);
     }
 
+    var fig = "";
 
+    if (options.caption != "") {
+        fig = "fig:";
+    }
     return pandoc.Para(
         [
             pandoc.Image(
                 ['', [], []],
-                [],
-                [newPath, ""]
+                [pandoc.Str(options.caption)],
+                [newPath, fig]
             )
     ]);
 }
