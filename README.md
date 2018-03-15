@@ -36,6 +36,7 @@ Options
 
 You have a couple of formatting options via attributes of the fenced code block to control the rendering
 
+- Pandoc caption and automatic image numbering - Use `{.mermaid caption="Caption Text Here"}`
 - Image Format - Use `{.mermaid format=svg}`     Default is png
 - Width  - Use `{.mermaid width=400}`     default with is 500
 - Theme - Use `{.mermaid theme=forest}` default is 'default'. Corresponds to `--theme`  flag of mermaid.cli
