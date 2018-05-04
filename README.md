@@ -56,5 +56,8 @@ JSON and CSS configuration
 ---------------------------
 
 Mermaid cli allows you to specify additional options in a json configuration file and a css file. `mermaid-filter`
-will look in the current directory for `.mermaid-config.json` and `.mermaid.css` and if found, pass them in to 
+will look in the current working directory for `.mermaid-config.json` and `.mermaid.css` and if found, pass them in to
 mermaid cli.
+
+Puppeteer Configuration - `mermaid-filter` will look in the current working directory for a `.puppeteer.json` and pass it
+on to mermaid cli (`-p` option of mmdc)if found

@@ -20,10 +20,14 @@ function mermaid(type, value, format, meta) {
     var classes = attrs[1];
     var options = {width: '500', format: 'png', loc: 'inline', theme: "default", caption: ""};
     var configFile = path.join(folder, ".mermaid-config.json")
-    
     var confFileOpts = ""
     if (fs.existsSync(configFile)) {
         confFileOpts += " -c " + configFile
+    }
+    var puppeteerConfig = path.join(folder, ".puppeteer.json")
+    var puppeteerOpts = ""
+    if (fs.existsSync(puppeteerConfig)) {
+        puppeteerOpts += " -p " + puppeteerConfig
     }
     var cssFile = path.join(folder, ".mermaid.css")
     if (fs.existsSync(cssFile)) {
@@ -49,7 +53,7 @@ function mermaid(type, value, format, meta) {
     // console.log(outdir);
     var savePath = tmpfileObj.name + "." + options.format
     var newPath = path.join(outdir, `${prefix}-${counter}.${options.format}`);
-    var fullCmd = `${cmd}  ${confFileOpts} -w ${options.width} -i ${tmpfileObj.name} -t ${options.theme} -o ${savePath}` 
+    var fullCmd = `${cmd}  ${confFileOpts} ${puppeteerOpts} -w ${options.width} -i ${tmpfileObj.name} -t ${options.theme} -o ${savePath}`
     // console.log(fullCmd, savePath)
     exec(fullCmd);
     //console.log(oldPath, newPath);
