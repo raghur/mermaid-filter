@@ -6,6 +6,7 @@ var fs = require('fs');
 var path = require('path');
 var exec = require('child_process').execSync;
 var process = require('process')
+var sanfile = require('sanitize-filename')
 
 var prefix="diagram";
 var cmd = externalTool("mmdc");
@@ -18,7 +19,7 @@ function mermaid(type, value, format, meta) {
     var attrs = value[0],
         content = value[1];
     var classes = attrs[1];
-    var options = {width: '500', format: 'png', loc: 'inline', theme: "default", caption: ""};
+    var options = {width: '500', format: 'png', loc: 'inline', theme: "default", caption: "", filename: ""};
     var configFile = path.join(folder, ".mermaid-config.json")
     var confFileOpts = ""
     if (fs.existsSync(configFile)) {
@@ -51,8 +52,17 @@ function mermaid(type, value, format, meta) {
     fs.writeFileSync(tmpfileObj.name, content);
     var outdir = options.loc !== 'imgur' ? options.loc : path.dirname(tmpfileObj.name);
     // console.log(outdir);
+
+    if (options.caption !== "" && options.filename === ""){
+      options.filename = sanfile(options.caption, {replacement: ''}).replace(/[#$~%+;()\[\]{}&=_\-\s]/g, '');
+    }
+
+    if (options.filename === ""){
+      options.filename = `${prefix}-${counter}`;
+    }
+
     var savePath = tmpfileObj.name + "." + options.format
-    var newPath = path.join(outdir, `${prefix}-${counter}.${options.format}`);
+    var newPath = path.join(outdir, `${options.filename}.${options.format}`);
     var fullCmd = `${cmd}  ${confFileOpts} ${puppeteerOpts} -w ${options.width} -i ${tmpfileObj.name} -t ${options.theme} -o ${savePath}`
     // console.log(fullCmd, savePath)
     exec(fullCmd);
@@ -67,7 +77,6 @@ function mermaid(type, value, format, meta) {
         } else  {
             var data = fs.readFileSync(savePath)
             newPath = 'data:image/png;base64,' + new Buffer(data).toString('base64');
-
         }
     } else if (options.loc === 'imgur')
         newPath = exec(`${imgur} ${savePath}`)
@@ -102,6 +111,7 @@ function externalTool(command) {
             process.exit(1);
         });
 }
+
 function mv(from, to) {
     var readStream = fs.createReadStream(from)
     var writeStream = fs.createWriteStream(to);
