@@ -123,7 +123,7 @@ function mv(from, to) {
 
 function firstExisting(paths, error) {
     for (var i = 0; i < paths.length; i++) {
-        if (fs.existsSync(paths[i])) return paths[i];
+        if (fs.existsSync(paths[i])) return `"${paths[i]}"`;
     }
     error();
 }
