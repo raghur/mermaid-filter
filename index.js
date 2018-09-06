@@ -35,6 +35,7 @@ function mermaid(type, value, format, meta) {
         confFileOpts += " -C " + cssFile
     }
 
+    // console.log(classes)
     if (classes.indexOf('mermaid') < 0) return null;
 
     // console.log(attrs, content);
@@ -44,7 +45,6 @@ function mermaid(type, value, format, meta) {
     });
     // console.log(options);
     // if (options.loc === 'inline') options.format = 'svg'
-    if (!_.contains('mermaid', classes)) return null;
     counter++;
     //console.log(content);
     var tmpfileObj = tmp.fileSync();
