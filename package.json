@@ -18,8 +18,8 @@
     "mermaid-filter": "index.js"
   },
   "dependencies": {
-    "imgur": "^0.2.0",
-    "lodash": "~3.10.1",
+    "imgur": "^0.2.1",
+    "lodash": "~> 4.17.5",
     "mermaid": "^7.1.2",
     "mermaid.cli": "^0.4.6",
     "pandoc-filter": "^0.1.3",
