@@ -19,7 +19,14 @@ function mermaid(type, value, format, meta) {
     var attrs = value[0],
         content = value[1];
     var classes = attrs[1];
-    var options = {width: '500', format: 'png', loc: 'inline', theme: "default", caption: "", filename: ""};
+    var options = {
+        width: process.env.MERMAID_FILTER_WIDTH || '500',
+        format: process.env.MERMAID_FILTER_FORMAT || 'png',
+        loc: process.env.MERMAID_FILTER_LOC || 'inline',
+        theme: process.env.MERMAID_FILTER_THEME || 'default',
+        caption: process.env.MERMAID_FILTER_CAPTION || '',
+        filename: process.env.MERMAID_FILTER_FILENAME || ''
+    };
     var configFile = path.join(folder, ".mermaid-config.json")
     var confFileOpts = ""
     if (fs.existsSync(configFile)) {
@@ -68,12 +75,9 @@ function mermaid(type, value, format, meta) {
     exec(fullCmd);
     //console.log(oldPath, newPath);
     if (options.loc == 'inline') {
-
         if (options.format === 'svg') {
             var data = fs.readFileSync(savePath, 'utf8')
-            data = data.replace (/"/g, "'");
-            // console.log(data);
-            newPath = "data:image/svg+xml," + encodeURIComponent(data);
+            newPath = "data:image/svg+xml;base64," + new Buffer(data).toString('base64');
         } else  {
             var data = fs.readFileSync(savePath)
             newPath = 'data:image/png;base64,' + new Buffer(data).toString('base64');
