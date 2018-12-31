@@ -53,6 +53,8 @@ You have a couple of formatting options via attributes of the fenced code block 
 Note that to specify options, you need to use the curly braces syntax and have the `.mermaid` class attached.
 Admittedly, this is uglier than the earlier syntax on top - but that's how Pandoc wants it.
 
+It's also possible to override global defaults by using environment variables. The name for these environment variables are the same as the attributes prefixed with a `MERMAID_FILTER_` so that `width` would be `MERMAID_FILTER_WIDTH`.
+
 JSON and CSS configuration
 ---------------------------
 
