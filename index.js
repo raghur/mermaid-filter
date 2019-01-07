@@ -18,7 +18,8 @@ function mermaid(type, value, format, meta) {
     if (type != "CodeBlock") return null;
     var attrs = value[0],
         content = value[1];
-    var classes = attrs[1];
+    var id = attrs[0],
+        classes = attrs[1];
     var options = {
         width: process.env.MERMAID_FILTER_WIDTH || '500',
         format: process.env.MERMAID_FILTER_FORMAT || 'png',
@@ -99,7 +100,7 @@ function mermaid(type, value, format, meta) {
     return pandoc.Para(
         [
             pandoc.Image(
-                ['', [], []],
+                [id, [], []],
                 [pandoc.Str(options.caption)],
                 [newPath, fig]
             )
