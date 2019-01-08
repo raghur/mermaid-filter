@@ -120,9 +120,10 @@ function mv(from, to) {
     var readStream = fs.createReadStream(from)
     var writeStream = fs.createWriteStream(to);
 
+    readStream.on('close', () => {
+        fs.unlinkSync(from);
+    });
     readStream.pipe(writeStream);
-
-    fs.unlinkSync(from);
 }
 
 function firstExisting(paths, error) {
