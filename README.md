@@ -57,7 +57,7 @@ It's also possible to override global defaults by using environment variables. T
 
 You can also specify an ID to be applied to the rendered image. This may be useful to use [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) or similar packages to reference your diagrams, for example:
 
-    ```{.mermaid #fig:example`}
+    ```{.mermaid #fig:example}
     // Your diagram code here
     ```
     
