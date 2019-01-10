@@ -55,6 +55,16 @@ Admittedly, this is uglier than the earlier syntax on top - but that's how Pando
 
 It's also possible to override global defaults by using environment variables. The name for these environment variables are the same as the attributes prefixed with a `MERMAID_FILTER_` so that `width` would be `MERMAID_FILTER_WIDTH`.
 
+You can also specify an ID to be applied to the rendered image. This may be useful to use [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) or similar packages to reference your diagrams, for example:
+
+    ```{.mermaid #fig:example}
+    // Your diagram code here
+    ```
+    
+    This text has a reference @fig:example which is automatically inserted.
+
+(Note that `pandoc-crossref` will automatically find and use the `caption=` option. Also note that the order of applying the filters matters - you must apply `mermaid-filter` *before* `pandoc-crossref` so that `pandoc-crossref` can find the images.)
+
 JSON and CSS configuration
 ---------------------------
 
