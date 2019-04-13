@@ -38,7 +38,7 @@ You have a couple of formatting options via attributes of the fenced code block 
 
 - Pandoc caption, the filename is this value cleaned up - Use `{.mermaid caption="Caption Text Here"}`
 - Image Format - Use `{.mermaid format=svg}`     Default is png
-- Width  - Use `{.mermaid width=400}`     default with is 500
+- Width  - Use `{.mermaid width=400}`     default with is 800
 - Theme - Use `{.mermaid theme=forest}` default is 'default'. Corresponds to `--theme`  flag of mermaid.cli
 - Filename - Use `{.mermaid filename="file with space"}` to set the filename. This has priority over the caption
 - Save path - Use `{.mermaid loc=img}`  default loc=inline which will
@@ -60,7 +60,7 @@ You can also specify an ID to be applied to the rendered image. This may be usef
     ```{.mermaid #fig:example}
     // Your diagram code here
     ```
-    
+
     This text has a reference @fig:example which is automatically inserted.
 
 (Note that `pandoc-crossref` will automatically find and use the `caption=` option. Also note that the order of applying the filters matters - you must apply `mermaid-filter` *before* `pandoc-crossref` so that `pandoc-crossref` can find the images.)

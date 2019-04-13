@@ -21,7 +21,7 @@ function mermaid(type, value, format, meta) {
     var id = attrs[0],
         classes = attrs[1];
     var options = {
-        width: process.env.MERMAID_FILTER_WIDTH || '500',
+        width: process.env.MERMAID_FILTER_WIDTH || 800,
         format: process.env.MERMAID_FILTER_FORMAT || 'png',
         loc: process.env.MERMAID_FILTER_LOC || 'inline',
         theme: process.env.MERMAID_FILTER_THEME || 'default',
