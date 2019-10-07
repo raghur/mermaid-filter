@@ -134,4 +134,11 @@ function firstExisting(paths, error) {
     error();
 }
 
-pandoc.toJSONFilter(mermaid);
+pandoc.toJSONFilter(function(type, value, format, meta) {
+    // redirect stderr to file - if it logs to stdout, then pandoc hangs due to improper json
+    errFile = path.join(folder,  "mermaid-filter.err");
+    errorLog = fs.createWriteStream(errFile);
+    var origStdErr = process.stderr.write;
+    process.stderr.write = errorLog.write.bind(errorLog);
+    return mermaid(type, value, format, meta);
+});

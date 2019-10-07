@@ -29,3 +29,12 @@ sequenceDiagram
     John-->>Alice: Great!
 ```
 
+Bug #37
+-------------------
+
+```{.mermaid}
+graph LR;
+    A-->B;
+    click A callback "Tooltip for a callback"
+    click B "http://www.github.com" "This is a tooltip for a link"
+```
