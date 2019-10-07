@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "imgur": "^0.3.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "mermaid": "^7.1.2",
     "mermaid.cli": "^0.4.6",
     "pandoc-filter": "^0.1.3",
