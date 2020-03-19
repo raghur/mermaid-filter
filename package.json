@@ -18,10 +18,10 @@
     "mermaid-filter": "index.js"
   },
   "dependencies": {
+    "@mermaid-js/mermaid-cli": "^8.4.8",
     "imgur": "^0.3.1",
     "lodash": "^4.17.13",
     "mermaid": "^7.1.2",
-    "mermaid.cli": "^0.4.6",
     "pandoc-filter": "^0.1.3",
     "sanitize-filename": "1.6.1",
     "tmp": "0.0.28"
