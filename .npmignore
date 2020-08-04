@@ -1,0 +1,9 @@
+*.md
+*.mmd
+tags
+img/
+*.rst
+*.html
+*.json
+!package.json
+
