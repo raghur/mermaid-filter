@@ -38,7 +38,7 @@ You have a couple of formatting options via attributes of the fenced code block 
 
 - Pandoc caption, the filename is this value cleaned up - Use `{.mermaid caption="Caption Text Here"}`
 - Image Format - Use `{.mermaid format=svg}`     Default is png
-- Width  - Use `{.mermaid width=400}`     default with is 800
+- Width  - Use `{.mermaid width=400}`     default width is 800
 - Theme - Use `{.mermaid theme=forest}` default is 'default'. Corresponds to `--theme`  flag of mermaid.cli
 - Filename - Use `{.mermaid filename="file with space"}` to set the filename. This has priority over the caption
 - Save path - Use `{.mermaid loc=img}`  default loc=inline which will
