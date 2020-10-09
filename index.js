@@ -13,6 +13,11 @@ var cmd = externalTool("mmdc");
 var imgur = externalTool("imgur");
 var counter = 0;
 var folder = process.cwd()
+// Create a writeable stream to redirect stderr to file - if it logs to stdout, then pandoc hangs due to improper json.
+// errorLog is used in pandoc.toJSONFilter
+var errFile = path.join(folder,  "mermaid-filter.err");
+var errorLog = fs.createWriteStream(errFile);
+
 // console.log(folder)
 function mermaid(type, value, format, meta) {
     if (type != "CodeBlock") return null;
@@ -135,10 +140,7 @@ function firstExisting(paths, error) {
 }
 
 pandoc.toJSONFilter(function(type, value, format, meta) {
-    // redirect stderr to file - if it logs to stdout, then pandoc hangs due to improper json
-    errFile = path.join(folder,  "mermaid-filter.err");
-    errorLog = fs.createWriteStream(errFile);
-    var origStdErr = process.stderr.write;
+	// Redirect stderr to a globally created writeable stream
     process.stderr.write = errorLog.write.bind(errorLog);
     return mermaid(type, value, format, meta);
 });
