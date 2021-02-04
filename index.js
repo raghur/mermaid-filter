@@ -84,6 +84,8 @@ function mermaid(type, value, format, meta) {
         if (options.format === 'svg') {
             var data = fs.readFileSync(savePath, 'utf8')
             newPath = "data:image/svg+xml;base64," + new Buffer(data).toString('base64');
+        } else if (options.format === 'pdf') {
+            newPath = savePath
         } else  {
             var data = fs.readFileSync(savePath)
             newPath = 'data:image/png;base64,' + new Buffer(data).toString('base64');
