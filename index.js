@@ -31,7 +31,8 @@ function mermaid(type, value, format, meta) {
         loc: process.env.MERMAID_FILTER_LOC || 'inline',
         theme: process.env.MERMAID_FILTER_THEME || 'default',
         caption: process.env.MERMAID_FILTER_CAPTION || '',
-        filename: process.env.MERMAID_FILTER_FILENAME || ''
+        filename: process.env.MERMAID_FILTER_FILENAME || '',
+        imageClass: process.env.MERMAID_FILTER_IMAGE_CLASS || ''
     };
     var configFile = path.join(folder, ".mermaid-config.json")
     var confFileOpts = ""
@@ -104,10 +105,13 @@ function mermaid(type, value, format, meta) {
     if (options.caption != "") {
         fig = "fig:";
     }
+
+    var imageClasses = options.imageClass ? [options.imageClass] : []
+
     return pandoc.Para(
         [
             pandoc.Image(
-                [id, [], []],
+                [id, imageClasses, []],
                 [pandoc.Str(options.caption)],
                 [newPath, fig]
             )
