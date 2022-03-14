@@ -40,6 +40,7 @@ You have a couple of formatting options via attributes of the fenced code block 
 - Image Format - Use `{.mermaid format=svg}`     Default is png
 - Width  - Use `{.mermaid width=400}`     default width is 800
 - Theme - Use `{.mermaid theme=forest}` default is 'default'. Corresponds to `--theme`  flag of mermaid.cli
+- Background - Use `{.mermaid background=transparent}` default is 'white'. Correponds to `--backgroundColor` flag of mermaid.cli
 - Filename - Use `{.mermaid filename="file with space"}` to set the filename. This has priority over the caption
 - Save path - Use `{.mermaid loc=img}`  default loc=inline which will
   encode the image in a `data uri` scheme.
