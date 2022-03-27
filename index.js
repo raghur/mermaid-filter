@@ -30,6 +30,7 @@ function mermaid(type, value, format, meta) {
         format: process.env.MERMAID_FILTER_FORMAT || 'png',
         loc: process.env.MERMAID_FILTER_LOC || 'inline',
         theme: process.env.MERMAID_FILTER_THEME || 'default',
+        background: process.env.MERMAID_FILTER_BACKROUND || 'white',
         caption: process.env.MERMAID_FILTER_CAPTION || '',
         filename: process.env.MERMAID_FILTER_FILENAME || '',
         imageClass: process.env.MERMAID_FILTER_IMAGE_CLASS || ''
@@ -77,7 +78,7 @@ function mermaid(type, value, format, meta) {
 
     var savePath = tmpfileObj.name + "." + options.format
     var newPath = path.join(outdir, `${options.filename}.${options.format}`);
-    var fullCmd = `${cmd}  ${confFileOpts} ${puppeteerOpts} -w ${options.width} -f -i ${tmpfileObj.name} -t ${options.theme} -o ${savePath}`
+    var fullCmd = `${cmd}  ${confFileOpts} ${puppeteerOpts} -w ${options.width} -f -i ${tmpfileObj.name} -t ${options.theme} -b ${options.background} -o ${savePath}`
     // console.log(fullCmd, savePath)
     exec(fullCmd);
     //console.log(oldPath, newPath);
