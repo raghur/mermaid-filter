@@ -1,6 +1,6 @@
 {
   "name": "mermaid-filter",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "Pandoc filter for mermaid",
   "main": "index.js",
   "scripts": {
