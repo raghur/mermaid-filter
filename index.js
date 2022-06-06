@@ -30,7 +30,7 @@ function mermaid(type, value, format, meta) {
         format: process.env.MERMAID_FILTER_FORMAT || 'png',
         loc: process.env.MERMAID_FILTER_LOC || 'inline',
         theme: process.env.MERMAID_FILTER_THEME || 'default',
-        background: process.env.MERMAID_FILTER_BACKROUND || 'white',
+        background: process.env.MERMAID_FILTER_BACKGROUND || 'white',
         caption: process.env.MERMAID_FILTER_CAPTION || '',
         filename: process.env.MERMAID_FILTER_FILENAME || '',
         scale: process.env.MERMAID_FILTER_SCALE || 1,
