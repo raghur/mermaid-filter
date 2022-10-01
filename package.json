@@ -24,6 +24,6 @@
     "minimist": ">=0.2.1",
     "pandoc-filter": "^0.1.3",
     "sanitize-filename": "1.6.1",
-    "tmp": "0.0.28"
+    "tmp": "^0.0.28"
   }
 }
