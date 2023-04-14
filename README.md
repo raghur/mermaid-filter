@@ -1,7 +1,7 @@
 Sequence and Graph diagrams in your markdown files!
 =========================
 
-`mermaid-filter` is a pandoc filter that adds support for [mermaid](http://knsv.github.io/mermaid/) syntax diagrams in markdown.
+`mermaid-filter` is a pandoc filter that adds support for [mermaid](https://github.com/mermaid-js/mermaid) syntax diagrams in markdown.
 
 Write your diagrams in fenced code blocks as usual like this:
 
