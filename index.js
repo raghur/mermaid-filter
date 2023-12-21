@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+// #! /usr/bin/env node
 var pandoc = require('pandoc-filter');
 var _ = require('lodash');
 var tmp = require('tmp');
@@ -15,11 +15,10 @@ var counter = 0;
 var folder = process.cwd()
 // Create a writeable stream to redirect stderr to file - if it logs to stdout, then pandoc hangs due to improper json.
 // errorLog is used in pandoc.toJSONFilter
-var errFile = path.join(folder,  "mermaid-filter.err");
-var errorLog = fs.createWriteStream(errFile);
+var tmpObj = tmp.fileSync({ mode: 0o644, prefix: 'mermaid-filter-', postfix: '.err' });
+var errorLog = fs.createWriteStream(tmpObj.name)
 
-// console.log(folder)
-function mermaid(type, value, format, meta) {
+function mermaid(type, value, _format, _meta) {
     if (type != "CodeBlock") return null;
     var attrs = value[0],
         content = value[1];
