@@ -85,7 +85,11 @@ function mermaid(type, value, _format, _meta) {
     if (options.loc == 'inline') {
         if (options.format === 'svg') {
             var data = fs.readFileSync(savePath, 'utf8')
-            newPath = "data:image/svg+xml;base64," + Buffer.from(data).toString('base64');
+            // newPath = "data:image/svg+xml;base64," + Buffer.from(data).toString('base64');
+
+
+            // does not use default theme - picks the forest theme in the test.md
+            return pandoc.RawBlock('html', data);
         } else if (options.format === 'pdf') {
             newPath = savePath
         } else  {
@@ -109,6 +113,8 @@ function mermaid(type, value, _format, _meta) {
 
     var imageClasses = options.imageClass ? [options.imageClass] : []
 
+    if (options.loc == 'inline' && options.format === 'svg') {
+    }
     return pandoc.Para(
         [
             pandoc.Image(
@@ -116,7 +122,7 @@ function mermaid(type, value, _format, _meta) {
                 [pandoc.Str(options.caption)],
                 [newPath, fig]
             )
-    ]);
+        ]);
 }
 
 function externalTool(command) {
