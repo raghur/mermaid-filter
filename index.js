@@ -7,10 +7,11 @@ var path = require('path');
 var exec = require('child_process').execSync;
 var process = require('process')
 var sanfile = require('sanitize-filename')
+const utils = require('./lib')
 
 var prefix = "diagram";
-var cmd = externalTool("mmdc");
-var imgur = externalTool("imgur");
+var cmd = utils.externalTool("mmdc", process.env);
+var imgur = utils.externalTool("imgur", process.env);
 var counter = 0;
 var folder = process.cwd()
 // Create a writeable stream to redirect stderr to file - if it logs to stdout, then pandoc hangs due to improper json.
@@ -119,27 +120,6 @@ function mermaid(type, value, _format, _meta) {
     ]);
 }
 
-function externalTool(command) {
-    var paths = [
-      path.resolve(__dirname, "node_modules", ".bin", command),
-      path.resolve(__dirname, "..", ".bin", command)
-    ];
-    // Ability to replace path of external tool by environment variable
-    // to replace `mmdc` use `MERMAID_FILTER_CMD_MMDC`
-    // to replace `imgur` use `MERMAID_FILTER_CMD_IMGUR`
-    var envCmdName = "MERMAID_FILTER_CMD_" + (command || "").toUpperCase().replace(/[^A-Z0-9-]/g, "_");
-    var envCmd = process.env[envCmdName];
-    if (envCmd) {
-      paths = [envCmd];
-      command = "env: " + envCmdName;  // for error message
-    }
-    return firstExisting(paths,
-        function() {
-            console.error("External tool not found: " + command);
-            process.exit(1);
-        });
-}
-
 function mv(from, to) {
     var readStream = fs.createReadStream(from)
     var writeStream = fs.createWriteStream(to);
@@ -148,13 +128,6 @@ function mv(from, to) {
         fs.unlinkSync(from);
     });
     readStream.pipe(writeStream);
-}
-
-function firstExisting(paths, error) {
-    for (var i = 0; i < paths.length; i++) {
-        if (fs.existsSync(paths[i])) return `"${paths[i]}"`;
-    }
-    error();
 }
 
 pandoc.toJSONFilter(function(type, value, format, meta) {
