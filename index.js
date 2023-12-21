@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-var pandoc=require('pandoc-filter');
+var pandoc = require('pandoc-filter');
 var _ = require('lodash');
 var tmp = require('tmp');
 var fs = require('fs');
@@ -8,7 +8,7 @@ var exec = require('child_process').execSync;
 var process = require('process')
 var sanfile = require('sanitize-filename')
 
-var prefix="diagram";
+var prefix = "diagram";
 var cmd = externalTool("mmdc");
 var imgur = externalTool("imgur");
 var counter = 0;
@@ -36,17 +36,17 @@ function mermaid(type, value, format, meta) {
         scale: process.env.MERMAID_FILTER_SCALE || 1,
         imageClass: process.env.MERMAID_FILTER_IMAGE_CLASS || ''
     };
-    var configFile = path.join(folder, ".mermaid-config.json")
+    var configFile = process.env.MERMAID_FILTER_MERMAID_CONFIG || path.join(folder, ".mermaid-config.json");
     var confFileOpts = ""
     if (fs.existsSync(configFile)) {
         confFileOpts += ` -c "${configFile}"`
     }
-    var puppeteerConfig = path.join(folder, ".puppeteer.json")
+    var puppeteerConfig = process.env.MERMAID_FILTER_PUPPETEER_CONFIG || path.join(folder, ".puppeteer.json");
     var puppeteerOpts = ""
     if (fs.existsSync(puppeteerConfig)) {
         puppeteerOpts += ` -p "${puppeteerConfig}"`
     }
-    var cssFile = path.join(folder, ".mermaid.css")
+    var cssFile = process.env.MERMAID_FILTER_MERMAID_CSS || path.join(folder, ".mermaid.css");
     if (fs.existsSync(cssFile)) {
         confFileOpts += ` -C "${cssFile}"`
     }
@@ -121,9 +121,20 @@ function mermaid(type, value, format, meta) {
 }
 
 function externalTool(command) {
-    return firstExisting([
-        path.resolve(__dirname, "node_modules", ".bin", command),
-        path.resolve(__dirname, "..", ".bin", command)],
+    var paths = [
+      path.resolve(__dirname, "node_modules", ".bin", command),
+      path.resolve(__dirname, "..", ".bin", command)
+    ];
+    // Ability to replace path of external tool by environment variable
+    // to replace `mmdc` use `MERMAID_FILTER_CMD_MMDC`
+    // to replace `imgur` use `MERMAID_FILTER_CMD_IMGUR`
+    var envCmdName = "MERMAID_FILTER_CMD_" + (command || "").toUpperCase().replace(/[^A-Z0-9-]/g, "_");
+    var envCmd = process.env[envCmdName];
+    if (envCmd) {
+      paths = [envCmd];
+      command = "env: " + envCmdName;  // for error message
+    }
+    return firstExisting(paths,
         function() {
             console.error("External tool not found: " + command);
             process.exit(1);
@@ -148,7 +159,7 @@ function firstExisting(paths, error) {
 }
 
 pandoc.toJSONFilter(function(type, value, format, meta) {
-	// Redirect stderr to a globally created writeable stream
+    // Redirect stderr to a globally created writeable stream
     process.stderr.write = errorLog.write.bind(errorLog);
     return mermaid(type, value, format, meta);
 });
