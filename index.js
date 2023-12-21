@@ -85,12 +85,12 @@ function mermaid(type, value, _format, _meta) {
     if (options.loc == 'inline') {
         if (options.format === 'svg') {
             var data = fs.readFileSync(savePath, 'utf8')
-            newPath = "data:image/svg+xml;base64," + new Buffer(data).toString('base64');
+            newPath = "data:image/svg+xml;base64," + Buffer.from(data).toString('base64');
         } else if (options.format === 'pdf') {
             newPath = savePath
         } else  {
             var data = fs.readFileSync(savePath)
-            newPath = 'data:image/png;base64,' + new Buffer(data).toString('base64');
+            newPath = 'data:image/png;base64,' + Buffer.from(data).toString('base64');
         }
     } else if (options.loc === 'imgur')
         newPath = exec(`${imgur} ${savePath}`)
