@@ -3,3 +3,4 @@ img/
 .vscode/
 .mermaid*
 test-output/
+coverage/
