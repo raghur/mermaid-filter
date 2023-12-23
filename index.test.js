@@ -1,4 +1,4 @@
-/* global describe it expect fail */
+/* global test describe it expect fail */
 const utils = require('./lib')
 describe('external tool lookup', () => {
   function findTool (name, env) {
@@ -20,4 +20,46 @@ describe('external tool lookup', () => {
       expect(path).not.toEqual('"/usr/bin/ls"')
     })
   })
+})
+
+describe('mermaid', () => {
+  test('returns null for non code block', () => {
+    const type = 'Paragraph'
+    const value = []
+    const format = ''
+    const meta = {}
+
+    expect(utils.mermaid(type, value, format, meta)).toBeNull()
+  })
+
+  test('returns null if no mermaid class', () => {
+    const type = 'CodeBlock'
+    const value = [['id', ['other']], 'graph TD;\nA-->B;']
+    const format = ''
+    const meta = {}
+
+    expect(utils.mermaid(type, value, format, meta)).toBeNull()
+  })
+})
+
+describe('getOptions', () => {
+  test('sets default options', () => {
+    const options = utils.getOptions()
+
+    expect(options).toEqual(expect.objectContaining({
+      width: 800,
+      format: 'png'
+    }))
+  })
+
+  test('overrides options from env', () => {
+    const options = utils.getOptions([], { MERMAID_FILTER_WIDTH: 600 })
+    expect(options.width).toBe(600)
+  })
+  test('overrides options from attributes', () => {
+    const options = utils.getOptions([['width', 600]])
+    expect(options.width).toBe(600)
+  })
+
+  // ... more tests
 })
