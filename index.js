@@ -1,6 +1,5 @@
 // #! /usr/bin/env node
 const pandoc = require('pandoc-filter')
-const _ = require('lodash')
 const tmp = require('tmp')
 const fs = require('fs')
 const path = require('path')
