@@ -1,21 +1,25 @@
-this is a markdown file
+## basic png with width override
 with a code block
 
-
-```{.mermaid width=100 format=png loc=img}
+```{.mermaid format=png loc=img}
 sequenceDiagram
+    Note right of John: png, folder img
     Alice->>John: Hello John, how are you?
     John-->>Alice: Great!
 ```
 
-```{.mermaid width=100 format=png loc=img}
+## Nested folder
+
+```{.mermaid format=png loc=img/child alt="should show up"}
 sequenceDiagram
+    Note right of John: png, folder img/child
     Alice->>John: Hello John, how are you?
     John-->>Alice: Great!
 ```
 
-```{.mermaid width=100 format=svg }
+```{.mermaid format=svg theme=neutral}
 sequenceDiagram
+    Note right of John: SVG output with neutral theme
     Alice->>John: Hello John, how are you?
     John-->>Alice: Great!
 ```
@@ -37,4 +41,62 @@ graph LR;
     A-->B;
     click A callback "Tooltip for a callback"
     click B "http://www.github.com" "This is a tooltip for a link"
+```
+
+## Bug 81
+
+
+```{.mermaid theme=forest}
+gitGraph
+   commit
+   commit
+   branch develop
+   checkout develop
+   commit
+   commit
+   checkout main
+   merge develop
+   commit
+   commit
+```
+
+
+```{.mermaid theme=forest}
+gitGraph:
+  commit
+  commit
+
+  branch feature/x
+  checkout feature/x
+  commit
+  commit
+  
+  checkout main
+
+  merge feature/x
+  
+  branch feature/y
+  checkout feature/y
+  commit
+  commit
+  
+  checkout main
+
+  merge feature/y
+  
+  branch release/x
+  checkout release/x
+
+  commit tag: "X.X.X-qualifier.X"
+  
+  checkout main
+  branch feature/z
+  checkout feature/z
+  commit
+  commit
+  
+  checkout main
+
+  merge feature/z
+      
 ```
