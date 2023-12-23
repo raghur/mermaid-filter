@@ -52,14 +52,37 @@ describe('getOptions', () => {
     }))
   })
 
-  test('overrides options from env', () => {
-    const options = utils.getOptions([], { MERMAID_FILTER_WIDTH: 600 })
-    expect(options.width).toBe(600)
-  })
-  test('overrides options from attributes', () => {
-    const options = utils.getOptions([['width', 600]])
-    expect(options.width).toBe(600)
+  describe('env overrides', () => {
+    it.each([
+      ['width', 600],
+      ['format', 'svg'],
+      ['loc', 'imgur'],
+      ['theme', 'forest'],
+      ['background', 'transparent'],
+      ['caption', 'caption'],
+      ['filename', 'filename'],
+      ['scale', 2],
+      ['imageClass', 'imageClass']
+    ])('overrides options for %s from env', (key, value) => {
+      const options = utils.getOptions([], { [`MERMAID_FILTER_${key.toUpperCase()}`]: value })
+      expect(options[key]).toBe(value)
+    })
   })
 
-  // ... more tests
+  describe('attribute overrides', () => {
+    it.each([
+      ['width', 600],
+      ['format', 'svg'],
+      ['loc', 'imgur'],
+      ['theme', 'forest'],
+      ['background', 'transparent'],
+      ['caption', 'caption'],
+      ['filename', 'filename'],
+      ['scale', 2],
+      ['imageClass', 'imageClass']
+    ])('overrides options for %s from attributes', (key, value) => {
+      const options = utils.getOptions([[key, value]])
+      expect(options[key]).toBe(value)
+    })
+  })
 })
