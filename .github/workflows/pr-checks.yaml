@@ -1,5 +1,5 @@
 # github action to run checks on PRs and pushes to master
-name: PR Checks
+name: Checks
 
 on:
   push:
