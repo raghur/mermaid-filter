@@ -4,7 +4,7 @@ name: Checks
 on:
   push:
     branches:
-      - **
+      - "*" # all branches
   pull_request:
     branches:
       - master
