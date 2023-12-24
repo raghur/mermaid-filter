@@ -17,18 +17,35 @@ sequenceDiagram
     John-->>Alice: Great!
 ```
 
-```{.mermaid format=svg theme=neutral}
+With theme specified
+---------------------
+
+**The following two diagram themes don't work because mermaid generates the svg with the same id and the last set of styles applied wins.**
+
+```{.mermaid format=svg }
+---
+config:
+  theme: dark
+  deterministicIds: true
+  deterministicIdSeed: first
+title: first
+---
 sequenceDiagram
-    Note right of John: SVG output with neutral theme
+    Note right of John: SVG output with dark theme
     Alice->>John: Hello John, how are you?
     John-->>Alice: Great!
 ```
 
-With theme specified
----------------------
-
-```{.mermaid width=100 format=svg theme=forest}
+```{.mermaid #item2 width=100 format=svg }
+---
+config:
+  theme: forest
+  deterministicIds: true
+  deterministicIdSeed: second
+title: first
+---
 sequenceDiagram
+    Note right of John: SVG output with forest theme
     Alice->>John: Hello John, how are you?
     John-->>Alice: Great!
 ```
