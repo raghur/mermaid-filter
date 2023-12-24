@@ -1,5 +1,23 @@
-/* global test describe it expect fail */
+/* global test jest describe it expect fail beforeEach */
+jest.mock('fs')
+jest.mock('process', () => ({
+  env: {}
+}))
+jest.mock('tmp', () => ({
+  fileSync: jest.fn().mockReturnValue({
+    name: 'tmpfile'
+  })
+}))
+jest.mock('child_process', () => ({
+  execSync: jest.fn()
+}))
+const fs = require('fs')
+// eslint-disable-next-line no-unused-vars
+const process = require('process')
+const exec = require('child_process').execSync
+fs.existsSync = jest.fn().mockReturnValue(true)
 const utils = require('./lib')
+
 describe('external tool lookup', () => {
   function findTool (name, env) {
     return utils.externalTool(name, env, () => fail(`expected to find utility ${name}`))
@@ -23,6 +41,11 @@ describe('external tool lookup', () => {
 })
 
 describe('mermaid', () => {
+  beforeEach(() => {
+    fs.writeFileSync = jest.fn()
+    fs.readFileSync = jest.fn().mockReturnValue('graph TD;\nA-->B;')
+    jest.clearAllMocks()
+  })
   test('returns null for non code block', () => {
     const type = 'Paragraph'
     const value = []
@@ -39,6 +62,22 @@ describe('mermaid', () => {
     const meta = {}
 
     expect(utils.mermaid(type, value, format, meta)).toBeNull()
+  })
+
+  test('renders with default options', () => {
+    utils.mermaid('CodeBlock', [['id', ['mermaid']], 'x'])
+
+    expect(exec).toHaveBeenCalled()
+    const cmd = exec.mock.lastCall[0]
+    console.log('cmd', cmd)
+    expect(cmd).toContain('mmdc')
+    expect(cmd).toContain('-s 1')
+    expect(cmd).toContain('-f')
+    expect(cmd).toContain('-i "tmpfile"')
+    expect(cmd).toContain('-t default')
+    expect(cmd).toContain('-w 800')
+    expect(cmd).toContain('-b white')
+    expect(cmd).toContain('-o "tmpfile.png"')
   })
 })
 
