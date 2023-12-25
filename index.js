@@ -1,7 +1,7 @@
 // #! /usr/bin/env node
 const pandoc = require('pandoc-filter')
 const process = require('process')
-const utils = require('./lib')
+const utils = require('./lib/filter')
 const tmp = require('tmp')
 const fs = require('fs')
 

@@ -16,6 +16,14 @@ sequenceDiagram
     Alice->>John: Hello John, how are you?
     John-->>Alice: Great!
 ```
+## fig ref
+```{.mermaid #fig:ref caption="Caption" format=png loc=img/child alt="should have id of fig:ref"}
+
+sequenceDiagram
+    Note right of John: png with id as attr
+    Alice->>John: Hello John, how are you?
+    John-->>Alice: Great!
+```
 
 With theme specified
 ---------------------
