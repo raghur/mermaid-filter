@@ -31,30 +31,32 @@ You have to edit the globally installed `mermaid-filter.cmd` located in `c:\user
 to use `~dp$PATH:0`.
 Unfortunately, you will need to do this each time you install/update mermaid-filter since it overwrites the cmd file.
 
-Options
+Attributes
 --------------------
 
 You have a couple of formatting options via attributes of the fenced code block to control the rendering
 
-- Pandoc caption, the filename is this value cleaned up - Use `{.mermaid caption="Caption Text Here"}`
-- Image Format - Use `{.mermaid format=svg}`     Default is png
-- Width  - Use `{.mermaid width=400}`     default width is 800
-- Theme - Use `{.mermaid theme=forest}` default is 'default'. Corresponds to `--theme`  flag of mermaid.cli
-- Background - Use `{.mermaid background=transparent}` default is 'white'. Correponds to `--backgroundColor` flag of mermaid.cli
-- Filename - Use `{.mermaid filename="file with space"}` to set the filename. This has priority over the caption
-- Save path - Use `{.mermaid loc=img}`  default loc=inline which will
-  encode the image in a `data uri` scheme.
-    - Possible values for `loc`
-        - `loc=inline` - default; encode image to data uri on img tag.
-            - For widest compatibility, use png (default)
-            - SVG has trouble on IE11
-        - `loc=imgur` - upload png to imgur and link to it.
-        - `loc=<anythingelse>` -treat as folder name to place images into
-
-Note that to specify options, you need to use the curly braces syntax and have the `.mermaid` class attached.
+Note that to specify options in attribtues, you need to use the curly braces syntax and have the `.mermaid` class attached.
 Admittedly, this is uglier than the earlier syntax on top - but that's how Pandoc wants it.
 
-It's also possible to override global defaults by using environment variables. The name for these environment variables are the same as the attributes prefixed with a `MERMAID_FILTER_` so that `width` would be `MERMAID_FILTER_WIDTH`.
+    // saves generated diagram in the img subfolder of the current working dir
+
+    ```{.mermaid loc=img}
+    // Your diagram code here
+    ```
+
+
+| Option Name | default value | env var | Notes|
+|-------------|---------------|---------|------|
+|   `caption` |             | `MERMAID_FILTER_CAPTION`| Sets `alt=` attribute on the image|
+| `format`    | png         | `MERMAID_FILTER_FORMAT` | Allowed - `svg`|
+| `width`     | 800           | `MERMAID_FILTER_WIDTH`  ||
+| `theme`     | default       | `MERMAID_FILTER_THEME`  |Corresponds to `--theme`  flag of mermaid.cli|
+|`background` | `white`       | `MERMAID_FILTER_BACKGROUND` |Correponds to `--backgroundColor` flag of mermaid.cli|
+| `filename`  | NA            | `MERMAID_FILTER_FILENAME`| Takes precedence |
+| `loc`| `inline` | `MERMAID_FILTER_LOC`| inline - generates a data url; `imgur` - uploads to imgur; `loc=anythingelse` saves images to folder `anythingelse`
+| `scale` | 1|`MERMAILD_FILTER_SCALE`| |
+| `imageclass` ||`MERMAID_FILTER_IMAGECLASS`| |
 
 You can also specify an ID to be applied to the rendered image. This may be useful to use [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) or similar packages to reference your diagrams, for example:
 
@@ -63,6 +65,8 @@ You can also specify an ID to be applied to the rendered image. This may be usef
     ```
 
     This text has a reference @fig:example which is automatically inserted.
+
+The `title` attribute is set to `fig:` by if the id specified starts with `fig:`
 
 (Note that `pandoc-crossref` will automatically find and use the `caption=` option. Also note that the order of applying the filters matters - you must apply `mermaid-filter` *before* `pandoc-crossref` so that `pandoc-crossref` can find the images.)
 
