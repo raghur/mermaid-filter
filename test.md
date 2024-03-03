@@ -17,10 +17,8 @@ sequenceDiagram
     John-->>Alice: Great!
 ```
 ## fig ref
-```{.mermaid #fig:ref caption="Caption" format=png loc=img/child alt="should have id of fig:ref"}
-
 If an id starts with `fig:`, then `title` attribute is set to `fig:`
-
+```{.mermaid #fig:ref caption="Caption" format=png loc=img/child alt="should have id of fig:ref"}
 sequenceDiagram
     Note right of John: png with id as attr
     Alice->>John: Hello John, how are you?
