@@ -1,4 +1,4 @@
-// #! /usr/bin/env node
+#! /usr/bin/env node
 const pandoc = require('pandoc-filter')
 const process = require('process')
 const utils = require('./lib/filter')
