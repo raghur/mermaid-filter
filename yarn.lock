@@ -2346,9 +2346,9 @@ dom-to-image-more@^2.13.0:
   integrity sha512-RyjtkaM/zVy90uJ20lT+/G7MwBZx6l/ePliq5CQOeAnPeew7aUGS6IqRWBkHpstU+POmhaKA8A9H9qf476gisQ==
 
 dompurify@^3.1.5, dompurify@^3.2.1:
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-3.2.3.tgz#05dd2175225324daabfca6603055a09b2382a4cd"
-  integrity sha512-U1U5Hzc2MO0oW3DF+G9qYN0aT7atAou4AgI0XjWz061nyBPbdxkfdhfy5uMgGn6+oLFCfn44ZGbdDqCzVmlOWA==
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-3.2.4.tgz#af5a5a11407524431456cf18836c55d13441cd8e"
+  integrity sha512-ysFSFEDVduQpyhzAob/kkuJjf5zWkZD8/A9ywSp1byueyuCfHamrCBa14/Oc2iiB0e51B+NpxSl5gmzn+Ms/mg==
   optionalDependencies:
     "@types/trusted-types" "^2.0.7"
 
@@ -2879,10 +2879,10 @@ get-package-type@^0.1.0:
   resolved "https://registry.npmjs.org/get-package-type/-/get-package-type-0.1.0.tgz"
   integrity sha512-pjzuKtY64GYfWizNAJ0fr9VqttZkNiK2iS430LtIHzjBEr6bX8Am2zm4sW4Ro5wjWW5cAlRL1qAMTcXbjNAO2Q==
 
-get-stdin@~0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/get-stdin/-/get-stdin-0.1.0.tgz"
-  integrity sha1-WZivJKr8gC0VyCxoVlfuuLENSpE=
+get-stdin@~7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-7.0.0.tgz#8d5de98f15171a125c5e516643c7a6d0ea8a96f6"
+  integrity sha512-zRKcywvrXlXsA0v0i9Io4KDRaAw7+a1ZpjRwl9Wox8PFlVCCHra7E9c4kqXCoCM9nR5tBkaTTZRBoCm60bFqTQ==
 
 get-stream@^5.1.0:
   version "5.2.0"
@@ -4310,12 +4310,12 @@ package-manager-detector@^0.2.0:
   resolved "https://registry.yarnpkg.com/package-manager-detector/-/package-manager-detector-0.2.7.tgz#6c3e47d7794fdd513512d02e2160c24ba559e39b"
   integrity sha512-g4+387DXDKlZzHkP+9FLt8yKj8+/3tOkPv7DVTJGGRm00RkEWgqbFstX1mXJ4M0VDYhUqsTOiISqNOJnhAu3PQ==
 
-pandoc-filter@^0.1.3:
-  version "0.1.8"
-  resolved "https://registry.npmjs.org/pandoc-filter/-/pandoc-filter-0.1.8.tgz"
-  integrity sha512-vUe/6vbKX/X+7utsn5bgNXkq7G/NOfIRVguOh8LQG8wwnoqjgcsJH4xvvRRaHbUWgsAf6OQAGbPTeOsPoLwVGQ==
+pandoc-filter@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/pandoc-filter/-/pandoc-filter-2.2.0.tgz#66805c60772cb8518ade338d1b36e0a7898ade73"
+  integrity sha512-mtjZfaiyONjN8HigU1XCoGDcadMmBwYtjAL2ol0vaY4qiOWmtCaVGJIa1gglKk7VSwYgAEfuE+5nvj/G3jLRBg==
   dependencies:
-    get-stdin "~0.1.0"
+    get-stdin "~7.0.0"
 
 parent-module@^1.0.0:
   version "1.0.1"
