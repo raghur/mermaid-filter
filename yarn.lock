@@ -2879,10 +2879,10 @@ get-package-type@^0.1.0:
   resolved "https://registry.npmjs.org/get-package-type/-/get-package-type-0.1.0.tgz"
   integrity sha512-pjzuKtY64GYfWizNAJ0fr9VqttZkNiK2iS430LtIHzjBEr6bX8Am2zm4sW4Ro5wjWW5cAlRL1qAMTcXbjNAO2Q==
 
-get-stdin@~0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/get-stdin/-/get-stdin-0.1.0.tgz"
-  integrity sha1-WZivJKr8gC0VyCxoVlfuuLENSpE=
+get-stdin@~7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-7.0.0.tgz#8d5de98f15171a125c5e516643c7a6d0ea8a96f6"
+  integrity sha512-zRKcywvrXlXsA0v0i9Io4KDRaAw7+a1ZpjRwl9Wox8PFlVCCHra7E9c4kqXCoCM9nR5tBkaTTZRBoCm60bFqTQ==
 
 get-stream@^5.1.0:
   version "5.2.0"
@@ -4257,11 +4257,6 @@ optionator@^0.9.3:
     prelude-ls "^1.2.1"
     type-check "^0.4.0"
 
-os-tmpdir@~1.0.1:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/os-tmpdir/-/os-tmpdir-1.0.2.tgz"
-  integrity sha1-u+Z0BseaqFxc/sdm/lc0VV36EnQ=
-
 p-cancelable@^2.0.0:
   version "2.1.1"
   resolved "https://registry.npmjs.org/p-cancelable/-/p-cancelable-2.1.1.tgz"
@@ -4310,12 +4305,12 @@ package-manager-detector@^0.2.0:
   resolved "https://registry.yarnpkg.com/package-manager-detector/-/package-manager-detector-0.2.7.tgz#6c3e47d7794fdd513512d02e2160c24ba559e39b"
   integrity sha512-g4+387DXDKlZzHkP+9FLt8yKj8+/3tOkPv7DVTJGGRm00RkEWgqbFstX1mXJ4M0VDYhUqsTOiISqNOJnhAu3PQ==
 
-pandoc-filter@^0.1.3:
-  version "0.1.8"
-  resolved "https://registry.npmjs.org/pandoc-filter/-/pandoc-filter-0.1.8.tgz"
-  integrity sha512-vUe/6vbKX/X+7utsn5bgNXkq7G/NOfIRVguOh8LQG8wwnoqjgcsJH4xvvRRaHbUWgsAf6OQAGbPTeOsPoLwVGQ==
+pandoc-filter@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/pandoc-filter/-/pandoc-filter-2.2.0.tgz#66805c60772cb8518ade338d1b36e0a7898ade73"
+  integrity sha512-mtjZfaiyONjN8HigU1XCoGDcadMmBwYtjAL2ol0vaY4qiOWmtCaVGJIa1gglKk7VSwYgAEfuE+5nvj/G3jLRBg==
   dependencies:
-    get-stdin "~0.1.0"
+    get-stdin "~7.0.0"
 
 parent-module@^1.0.0:
   version "1.0.1"
@@ -5113,12 +5108,10 @@ tinyexec@^0.3.0:
   resolved "https://registry.yarnpkg.com/tinyexec/-/tinyexec-0.3.1.tgz#0ab0daf93b43e2c211212396bdb836b468c97c98"
   integrity sha512-WiCJLEECkO18gwqIp6+hJg0//p23HXp4S+gGtAKu3mI2F2/sXC4FvHvXvB0zJVVaTPhx1/tOwdbRsa1sOBIKqQ==
 
-tmp@^0.0.28:
-  version "0.0.28"
-  resolved "https://registry.npmjs.org/tmp/-/tmp-0.0.28.tgz"
-  integrity sha1-Fyc1t/YU6nrzlmT6hM8N5OUV0SA=
-  dependencies:
-    os-tmpdir "~1.0.1"
+tmp@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.2.4.tgz#c6db987a2ccc97f812f17137b36af2b6521b0d13"
+  integrity sha512-UdiSoX6ypifLmrfQ/XfiawN6hkjSBpCjhKxxZcWlUUmoXLaCKQU0bx4HF/tdDK2uzRuchf1txGvrWBzYREssoQ==
 
 tmpl@1.0.5:
   version "1.0.5"
