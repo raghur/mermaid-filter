@@ -50,7 +50,7 @@ Admittedly, this is uglier than the earlier syntax on top - but that's how Pando
 |-------------|---------------|---------|------|
 |   `caption` |             | `MERMAID_FILTER_CAPTION`| Sets `alt=` attribute on the image|
 | `format`    | png         | `MERMAID_FILTER_FORMAT` | Allowed - `svg`|
-| `width`     | 800           | `MERMAID_FILTER_WIDTH`  ||
+| `width`     |               | `MERMAID_FILTER_WIDTH`  |Corresponds to `--size` flag of mermaid.cli: caps width and height, scaling smaller diagrams up. Unset, a diagram keeps its natural size|
 | `theme`     | default       | `MERMAID_FILTER_THEME`  |Corresponds to `--theme`  flag of mermaid.cli|
 |`background` | `white`       | `MERMAID_FILTER_BACKGROUND` |Correponds to `--backgroundColor` flag of mermaid.cli|
 | `filename`  | NA            | `MERMAID_FILTER_FILENAME`| Takes precedence |
